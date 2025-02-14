@@ -1,4 +1,4 @@
-# 🎮 GuessMaster-2025_v1 🎮
+# 🎮 GuessMaster-2025 🎮
 
 🚀 A fun and interactive number-guessing game with **Single Player** and **Multiplayer Mode**!
 
