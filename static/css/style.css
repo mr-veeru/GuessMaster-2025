@@ -1,0 +1,267 @@
+body {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    position: relative;
+}
+
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.score-board {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.guess-input {
+    font-size: 1.2em;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.guess-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.game-message {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.hint {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Update toast container positioning */
+.toast-container {
+    position: fixed;
+    top: 80px !important; /* Move below navbar */
+    right: 20px;
+    z-index: 1060;
+    pointer-events: auto;
+}
+
+.toast {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    opacity: 1 !important;
+    min-width: 300px;
+}
+
+.toast.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.toast-header {
+    border-bottom: none;
+    background-color: transparent;
+    padding: 0.75rem 1rem;
+}
+
+.toast-body {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Error toast specific styling */
+.toast[data-type="error"] {
+    border-left: 4px solid #dc3545;
+}
+
+.toast[data-type="error"] .toast-header {
+    color: #dc3545;
+}
+
+/* Add animation for toast */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.show {
+    animation: slideInRight 0.3s ease-in-out;
+}
+
+/* Add error message styling */
+.game-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .card {
+        background-color: #454d55;
+        color: #fff;
+    }
+
+    .score-board {
+        background-color: #454d55;
+        color: #fff;
+    }
+
+    .guess-input {
+        background-color: #343a40;
+        color: #fff;
+        border-color: #6c757d;
+    }
+
+    .toast {
+        background-color: #343a40;
+        color: #fff;
+    }
+    
+    .toast-header {
+        background-color: #454d55;
+        color: #fff;
+    }
+    
+    .game-message.error {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #ff6b6b;
+    }
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .btn,
+    .game-message {
+        transition: none;
+        animation: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid #000;
+    }
+
+    .game-message {
+        border-width: 2px;
+    }
+}
+
+/* Ensure messages are always visible */
+.game-message.success,
+.game-message.error,
+.game-message.hint {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Add transition for message changes */
+.game-message.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Add fade transition */
+.toast {
+    transition: opacity 0.3s ease-in-out;
+}

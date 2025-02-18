@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="game-container">
+    <div class="text-center mb-4">
+        <h2><i class="fas fa-user"></i> Single Player Mode</h2>
+        <p class="text-muted">Test your guessing skills!</p>
+    </div>
+    
+    <!-- Game Setup -->
+    <div id="setup-screen" class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Choose Difficulty</h5>
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" onclick="startGame('easy')">
+                    <i class="fas fa-star"></i> Easy Mode (1-50)
+                </button>
+                <button class="btn btn-warning" onclick="startGame('medium')">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i> Medium Mode (1-100)
+                </button>
+                <button class="btn btn-danger" onclick="startGame('hard')">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Hard Mode (1-500)
+                </button>
+                
+                <!-- Custom Mode -->
+                <button class="btn btn-primary" onclick="showCustomModeSetup()">
+                    <i class="fas fa-cog"></i> Custom Mode
+                </button>
+            </div>
+
+            <!-- Custom Mode Setup (hidden by default) -->
+            <div id="custom-mode-setup" class="mt-3" style="display: none;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <input type="number" id="custom-min" class="form-control" placeholder="Min Value" min="1">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="number" id="custom-max" class="form-control" placeholder="Max Value" min="2">
+                    </div>
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-primary" onclick="startCustomGame()">
+                        Start Custom Game
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Play -->
+    <div id="game-screen" class="card mb-4" style="display: none;">
+        <div class="card-body">
+            <div class="score-board">
+                <div class="row text-center">
+                    <div class="col">
+                        <h5><i class="fas fa-crosshairs"></i> Attempts</h5>
+                        <span id="attempts" class="h4">0</span>
+                    </div>
+                    <div class="col">
+                        <h5><i class="fas fa-hourglass-half"></i> Remaining</h5>
+                        <span id="remaining" class="h4">0</span>
+                    </div>
+                    <div class="col">
+                        <h5><i class="fas fa-trophy"></i> Best</h5>
+                        <span id="best-score" class="h4">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="game-message" class="game-message text-center mb-3"></div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-question"></i></span>
+                <input type="number" 
+                       id="guess-input" 
+                       class="form-control guess-input" 
+                       placeholder="Enter your guess"
+                       autocomplete="off">
+                <button class="btn btn-primary" onclick="makeGuess()">
+                    <i class="fas fa-paper-plane"></i> Guess
+                </button>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-outline-secondary" onclick="resetGame()">
+                    <i class="fas fa-redo"></i> New Game
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- High Scores -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-trophy"></i> High Scores</h5>
+            <div id="high-scores" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Difficulty</th>
+                            <th>Best Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scores-table-body">
+                        <tr>
+                            <td colspan="3" class="text-center">Loading scores...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Game Over Modal -->
+<div class="modal fade" id="gameOverModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gameOverTitle">Game Over</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="gameOverMessage">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="resetGame()">Play Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/singleplayer.js') }}"></script>
+{% endblock %}

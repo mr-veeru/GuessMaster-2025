@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="game-container">
+    <h2 class="text-center mb-4">Multiplayer Mode</h2>
+    
+    <!-- Player Setup -->
+    <div id="player-setup" class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Enter Player Names</h5>
+            <div class="mb-3">
+                <input type="text" id="player1-name" class="form-control" placeholder="Player 1 Name">
+            </div>
+            <div class="mb-3">
+                <input type="text" id="player2-name" class="form-control" placeholder="Player 2 Name">
+            </div>
+            <button class="btn btn-primary w-100" onclick="startMultiplayerGame()">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Game Play -->
+    <div id="multiplayer-game" class="card mb-4" style="display: none;">
+        <div class="card-body">
+            <div class="score-board">
+                <div class="d-flex justify-content-between">
+                    <span>Round: <span id="current-round">1</span>/2</span>
+                    <span>Attempts: <span id="multi-attempts">0</span></span>
+                </div>
+                <div id="current-players" class="text-center mt-2"></div>
+            </div>
+
+            <div id="multi-message" class="game-message text-center mb-3"></div>
+
+            <!-- Number Selection (for choosing player) -->
+            <div id="number-selection" style="display: none;">
+                <div class="input-group mb-3">
+                    <input type="password" id="secret-number" class="form-control" placeholder="Enter your secret number (1-100)">
+                    <button class="btn btn-primary" onclick="setSecretNumber()">Set Number</button>
+                </div>
+            </div>
+
+            <!-- Guessing Interface -->
+            <div id="guessing-interface" style="display: none;">
+                <div class="input-group mb-3">
+                    <input type="number" id="multi-guess" class="form-control guess-input" placeholder="Enter your guess">
+                    <button class="btn btn-primary" onclick="makeMultiplayerGuess()">Guess</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- High Scores -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-trophy"></i> Recent Matches</h5>
+            <div id="multi-scores" class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Players</th>
+                            <th>Scores</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody id="multi-scores-body">
+                        <tr>
+                            <td colspan="3" class="text-center">Loading scores...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/multiplayer.js') }}"></script>
+{% endblock %}
