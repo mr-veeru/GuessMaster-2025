@@ -1,0 +1,51 @@
+# 🎮 GuessMaster-2025 🎮  
+
+🚀 A fun and interactive number-guessing game with **Single Player** and **Multiplayer Mode**!  
+
+## 📌 Features  
+✅ **Single Player Mode** – Try to guess a random number within a given range.  
+✅ **Multiplayer Mode** – Two players pick and guess numbers.  
+✅ **Score Tracking** – Saves high scores for both modes.  
+✅ **Max Attempts Limit** – Players must guess within a fixed number of attempts.  
+✅ **User-Friendly Interface** – Simple and fun to play!  
+
+## 🎮 How to Play?  
+1. **Run the game**:  
+   ```sh
+   python main.py
+   ```
+2. Choose Single Player or Multiplayer mode.  
+3. Follow on-screen instructions to play!  
+
+## 📂 Folder Structure  
+```
+GuessMaster-2025_v1/
+│── main.py                   # Main menu to start the game
+│── singleplayer.py           # Handles single-player mode
+│── multiplayer.py            # Handles multiplayer mode
+│── singleplayer_scores.json  # Stores high scores for single-player
+│── multiplayer_scores.json   # Stores high scores for multiplayer
+│── README.md                 # Project documentation
+```
+
+## 🛠 Installation  
+1. Install Python (if not installed) from [python.org](https://www.python.org/).  
+2. Clone this repository:  
+   ```sh
+   git clone https://github.com/mr-veeru/GuessMaster-2025.git
+   ```
+3. Navigate to the folder:  
+   ```sh
+   cd GuessMaster-2025
+   ```
+4. Run the game:  
+   ```sh
+   python main.py
+   ```
+
+## 🔥 Upcoming Updates  
+🔹 **Flask Integration** – This project will be expanded into a web application using **Flask**.  
+🔹 **Web-Based Gameplay** – Players will be able to play directly from their browser.  
+🔹 **Leaderboard System** – High scores will be stored in a database for global tracking.  
+
+Stay tuned for more updates! 🚀  
