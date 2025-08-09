@@ -42,10 +42,3 @@ GuessMaster-2025_v1/
    ```sh
    python main.py
    ```
-
-## 🔥 Upcoming Updates  
-🔹 **Flask Integration** – This project will be expanded into a web application using **Flask**.  
-🔹 **Web-Based Gameplay** – Players will be able to play directly from their browser.  
-🔹 **Leaderboard System** – High scores will be stored in a database for global tracking.  
-
-Stay tuned for more updates! 🚀  
